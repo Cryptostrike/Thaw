@@ -1,4 +1,4 @@
 Thaw
 ====
 
-Intelligent RF enabled freezer thermometer 
+Intelligent ethernet enabled freezer thermometer 
