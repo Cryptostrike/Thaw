@@ -1,9 +1,9 @@
 Freezer transmitter
 ===
 
-Read sensor 1 and 2 every 30 seconds, collect data in array and average over 5 minutes.
+Read sensor 1 and 2 every 30 seconds, collect data in mySQL db and average over 5 minutes.
 
-If sensorRead < sensorTarget display red LED and buzz every 30 seconds.
+If sensorRead < sensorTarget display red LED [and buzz every 30 seconds.]
 
 Transmit data every 5 minutes in format [SigByte [F1 : TEMP1] [F2 : TEMP2]]
 
