@@ -1,5 +1,6 @@
 #include <UIPEthernet.h> 
- 
+#define DEBUG
+
 // Ethernet MAC address
 byte mac[] = { 0x54, 0x34, 0x41, 0x30, 0x30, 0x31 };                                       
  
@@ -10,9 +11,10 @@ int  interval = 5000; // Dump dela
 IPAddress myIP(192,168,0,21); // Arduino IP static
 
 void setup() {
- 
-  Serial.begin(9600);
   Ethernet.begin(mac,myIP);
+  
+ #ifdef DEBUG
+  Serial.begin(9600);
   Serial.print("IP Address        : ");
   Serial.println(Ethernet.localIP());
   Serial.print("Subnet Mask       : ");
@@ -21,11 +23,15 @@ void setup() {
   Serial.println(Ethernet.gatewayIP());
   Serial.print("DNS Server IP     : ");
   Serial.println(Ethernet.dnsServerIP());
+ #endif
 }
  
 void loop() {
   if (client.connect(server, 80)) {
+    #ifdef DEBUG
     Serial.println("-> Connected");
+    #endif
+    
     // Make a HTTP request:
     client.print( "GET /add_data.php?");
     client.print("serial=");
@@ -42,7 +48,9 @@ void loop() {
     client.stop();
   }
   else {
+    #ifdef DEBUG
     Serial.println("--> connection failed/n");
+    #endif
   }
  
   delay(interval);
