@@ -1,17 +1,17 @@
 #include <UIPEthernet.h> 
-#include "DHT.h"
-#define DEBUG
-#define DHTPIN   2 
-#define DHTTYPE DHT22
+#include "DHT.h" // DHT sensor libraries
+#define DEBUG 
+#define DHTPIN   2 // DHT sensor pin 
+#define DHTTYPE DHT22 // This sensor is a DHT22, other models can be defined here.
 
 // Ethernet MAC address
 byte mac[] = { 0x54, 0x34, 0x41, 0x30, 0x30, 0x31 };                                       
 
-DHT dht(DHTPIN, DHTTYPE);
+DHT dht(DHTPIN, DHTTYPE); // Set up DHT using given information
  
 EthernetClient client;
-char server[] = "95.85.42.70"; // Data server IP (Replace with actual IP)
-int  interval = 5000; // Dump dela
+char server[] = "00.00.42.70"; // Data server IP (Replace with actual IP)
+int  interval = 5000; // Dump delay
 IPAddress myIP(192,168,0,21); // Arduino IP static
 
 void setup() {
@@ -61,7 +61,7 @@ void loop() {
   delay(interval);
 }
 
-void DHTTemp(void){
+void DHTTemp(void){ // Read sensor and print it to DHTTemp
   delay(2000); // read every 2000 ms
   //float h = dht.readHumidity();
   float t = dht.readTemperature();
