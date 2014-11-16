@@ -36,21 +36,27 @@ void loop() {
     #ifdef DEBUG
     Serial.println("-> Connected");
     #endif
-    
+    //float h = dht.readHumidity();
+    float t = dht.readTemperature();    
     // Make a HTTP request:
     client.print( "GET /add_data.php?");
     client.print("serial=");
     client.print( "288884820500006X" );
     client.print("&&");
     client.print("temperature=");
-    DHTTemp();
+
+    client.print(t);
     client.println( " HTTP/1.1");
     client.print( "Host: " );
     client.println(server);
     client.println( "Connection: close" );
     client.println();
     client.println();
-    client.stop();
+    client.stop(); 
+    
+    #ifdef DEBUG
+    Serial.println(t);
+    #endif
   }
   else {
     #ifdef DEBUG
@@ -59,17 +65,4 @@ void loop() {
   }
  
   delay(interval);
-}
-
-void DHTTemp(void){ // Read sensor and print it to DHTTemp
-  delay(2000); // read every 2000 ms
-  //float h = dht.readHumidity();
-  float t = dht.readTemperature();
-  client.print(t);
-  
-  #ifdef DEBUG
-  Serial.println(t);
-  #endif
-  
-  return;
 }
