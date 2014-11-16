@@ -36,15 +36,17 @@ void loop() {
     #ifdef DEBUG
     Serial.println("-> Connected");
     #endif
+   
+    // Read DHT22 sensor data
     //float h = dht.readHumidity();
     float t = dht.readTemperature();    
+   
     // Make a HTTP request:
     client.print( "GET /add_data.php?");
     client.print("serial=");
     client.print( "288884820500006X" );
     client.print("&&");
     client.print("temperature=");
-
     client.print(t);
     client.println( " HTTP/1.1");
     client.print( "Host: " );
